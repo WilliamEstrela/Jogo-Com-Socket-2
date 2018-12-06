@@ -63,7 +63,7 @@ public class Servidor extends Thread {
 		
 		resultato = x + y;
 		
-		String questao = "Responda a soma dos numeros  " + x + " + " + y + " ?";
+		String questao = "Responda a soma dos numeros  " + x + " + " + y + " ? usando um @ antes da mensagem";
 
 		return questao;
 	}
