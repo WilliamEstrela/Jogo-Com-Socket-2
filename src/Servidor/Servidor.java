@@ -53,8 +53,9 @@ public class Servidor extends Thread {
 	}
 
 	/**
-	 * Retorna uma questao de de + e seta o resultado da questao na variavel global 'resultado'
+	 *  Retorna uma questao de de + e seta o resultado da questão na variavel global 'resultado'
 	 */
+	
 	public static String getQuestao() {
 		int x, y, limite=60;
 
@@ -71,8 +72,8 @@ public class Servidor extends Thread {
 
 	/**
 	 * Metodo validador de resposta
-	 * @param s
-	 * @return
+	 * 
+	 * 
 	 */
 	public Boolean RespostaCorreta(String s) {
 		int a;
