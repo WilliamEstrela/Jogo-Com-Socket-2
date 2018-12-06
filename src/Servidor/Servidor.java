@@ -90,7 +90,7 @@ public class Servidor extends Thread {
 	}
 
 	/*
-	 * testando modificação 
+	 * MÃ©todo responsavel por iniciar a classe servidor 
 	 * 
 	 */
 	public void run() {
