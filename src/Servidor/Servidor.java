@@ -90,7 +90,7 @@ public class Servidor extends Thread {
 	}
 
 	/*
-	 * Método responsavel por iniciar a classe servidor com socker
+	 * Método responsavel por iniciar a classe servidor com socket
 	 * 
 	 */
 	public void run() {
