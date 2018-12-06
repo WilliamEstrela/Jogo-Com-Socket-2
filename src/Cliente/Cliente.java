@@ -102,9 +102,9 @@ public class Cliente extends JFrame implements ActionListener, KeyListener {
 		quadroProgresso2.setOrientation(SwingConstants.VERTICAL);
 		quadroProgresso2.setForeground(Color.MAGENTA);
 		
-		lbl1 = new JLabel("Advers\u00E1rio");
+		lbl1 = new JLabel("Adversario");
 		
-		lbl2 = new JLabel("Advers\u00E1rio");
+		lbl2 = new JLabel("Adversario");
 		lblHistorico = new JLabel("Hist�rico");
 		GroupLayout gl_panePlacar = new GroupLayout(painelPlacar);
 		gl_panePlacar.setHorizontalGroup(

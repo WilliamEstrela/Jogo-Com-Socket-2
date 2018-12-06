@@ -43,25 +43,43 @@ public class Servidor extends Thread {
 		}
 	}
 
-// Gerador de perguntas
-//Requisito futuro : gerar perguntas com a b c d
-
-	public static String getQuestao() {
-		int x, y;
-
+	/**
+	 * Retorna um inteiro aleatorio
+	 */
+	public static int getNumeroAleatorio(Integer limite){
 		Random g = new Random();
-		x = g.nextInt(60);
-		y = g.nextInt(60);
-		resultato = x + y;
-		return "Responda a soma dos números  " + x + " + " + y + " ?";
+
+		return g.nextInt(limite);
 	}
 
-// Metado validador de respostas
+	/**
+	 * Retorna uma questao de de + e seta o resultado da questao na variavel global 'resultado'
+	 */
+	public static String getQuestao() {
+		int x, y, limite=60;
 
+		x = getNumeroAleatorio(limite);
+		y = getNumeroAleatorio(limite);
+		
+		resultato = x + y;
+		
+		String questao = "Responda a soma dos numeros  " + x + " + " + y + " ?";
+
+		return questao;
+	}
+
+
+	/**
+	 * Metodo validador de resposta
+	 * @param s
+	 * @return
+	 */
 	public Boolean RespostaCorreta(String s) {
-		if (questaoContador == 0)
-			return false;
 		int a;
+
+		if (questaoContador == 0){
+			return false;
+		}
 		try {
 			a = Integer.parseInt(s);
 		} catch (Exception e) {
@@ -97,7 +115,7 @@ public class Servidor extends Thread {
 						sendPontos(bufwr);
 						
 						if (pontosPlayer1 == 5 || pontosPlayer2 == 5) {
-							sendToAll(nome + " Parabéns a Vitoria e Sua!");
+							sendToAll(nome + " Parabï¿½ns a Vitoria e Sua!");
 						} else
 							
 							sendQuestao(getQuestao());
@@ -152,7 +170,7 @@ public class Servidor extends Thread {
 
 	}
 
-	// Função para adribuir a pontuação
+	// Funï¿½ï¿½o para adribuir a pontuaï¿½ï¿½o
 
 	public void sendPontos(BufferedWriter bwSaida) throws IOException {
 		BufferedWriter bwS, bwP = null;
@@ -192,7 +210,6 @@ public class Servidor extends Thread {
 		questaoContador++;
 		for (BufferedWriter bw : clientes) {
 			try {
-
 				bw.write("SERVER->  " + questaoContador + " - " + msg + "\r\n");
 				bw.flush();
 			} catch (Exception e) {
@@ -202,8 +219,10 @@ public class Servidor extends Thread {
 
 	}
 
-// Função Main
-
+	/**
+	 * Metodo responsavel por criar a conexao de socket
+	 * @param args
+	 */
 	public static void main(String[] args) {
 
 		try {
@@ -216,7 +235,7 @@ public class Servidor extends Thread {
 			JOptionPane.showMessageDialog(null, " Servidor conectado na porta: " + txtPorta.getText());
 
 			while (playerContador < 2) {
-				System.out.println("Aguardando conexões....");
+				System.out.println("Aguardando conexï¿½es....");
 				System.out.println(" Necessario 2 ou mas players para jogar!..");
 				Socket con = server.accept();
 				playerContador++;
