@@ -12,7 +12,6 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Random;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -31,7 +30,7 @@ public class Servidor extends Thread {
 	private static int resultato = 0;
 	private static int pontosPlayer1 = 0;
 	private static int pontosPlayer2 = 0;
-
+//
 	public Servidor(Socket con) {
 		this.conecao = con;
 		try {
@@ -44,7 +43,7 @@ public class Servidor extends Thread {
 	}
 
 	/**
-	 * Retorna um inteiro aleatorio
+	 * Metodo para retornar um inteiro aliatorio
 	 */
 	public static int getNumeroAleatorio(Integer limite){
 		Random g = new Random();
@@ -53,7 +52,7 @@ public class Servidor extends Thread {
 	}
 
 	/**
-	 *  Retorna uma questao de de + e seta o resultado da questão na variavel global 'resultado'
+	 *  Retorna uma questao de soma e seta o resultado da questão na variavel global 'resultado'
 	 */
 	
 	public static String getQuestao() {
@@ -64,7 +63,11 @@ public class Servidor extends Thread {
 		
 		resultato = x + y;
 		
+<<<<<<< HEAD
 		String questao = "Responda a soma dos numeros  " + x + " + " + y + " ? usando um @ antes da mensagem";
+=======
+		String questao = "Responda a soma dos numeros  " + x + " + " + y + " ? \n Use o caracter ' @ ' para indentificar o inicio de uma resposta!";
+>>>>>>> 397b3798545055229dbe712ddfd6cbd71ab0f4d2
 
 		return questao;
 	}
@@ -80,7 +83,13 @@ public class Servidor extends Thread {
 	}
 
 	/**
+<<<<<<< HEAD
 	 * Metodo validador de resposta
+=======
+	 * Metodo para validar se a resposta enviada pelo cliente esta correta
+	 * 
+	 * 
+>>>>>>> 397b3798545055229dbe712ddfd6cbd71ab0f4d2
 	 */
 	public Boolean RespostaCorreta(String s) {
 		Integer respostaDigitada = pegaInteiro(s);
