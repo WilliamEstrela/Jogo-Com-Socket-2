@@ -76,7 +76,7 @@ public class Servidor extends Thread {
 	 * 
 	 * 
 	 */
-	public Boolean RespostaCorreta(String s) {
+	public Boolean respostaCorreta(String s) {
 		int a;
 
 		if (questaoContador == 0) {
@@ -110,21 +110,21 @@ public class Servidor extends Thread {
 
 			while (!"Sair".equalsIgnoreCase(mensagem) && mensagem != null) {
 
-				if (playerContador == 2 && questaoContador == 0)
+				if (playerContador == 2 && questaoContador == 0){
 					sendQuestao(getQuestao());
+				}
+
 				mensagem = bfr.readLine();
 
 				if (mensagem.length() > 1 && "@".equalsIgnoreCase(mensagem.substring(0, 1))) {
 					sendToAll(bufwr, mensagem);
-					if (RespostaCorreta(mensagem.substring(1, mensagem.length()))) {
+
+					String respostaDigitada  = mensagem.substring(1, mensagem.length());
+					if (respostaCorreta(respostaDigitada)) {
 						System.out.println("Resposta correta!");
 						sendPontos(bufwr);
 
-						if (pontosPlayer1 == 5 || pontosPlayer2 == 5) {
-							sendToAll(nome + " Parabens a Vitoria e Sua!");
-						} else
-
-							sendQuestao(getQuestao());
+						validaPontos(nome);
 					}
 
 				} else {
@@ -139,6 +139,17 @@ public class Servidor extends Thread {
 
 		}
 	}
+
+	public void validaPontos(String nome){
+		
+		if (pontosPlayer1 == 5 || pontosPlayer2 == 5) {
+			sendToAll(nome + " Parabens a Vitoria e Sua!");
+		} else{
+			sendQuestao(getQuestao());
+		}
+	}
+
+	
 
 	/**
 	 *  Metado para enviar mensagens a todos os clientes conectados ao servidor
