@@ -1,0 +1,26 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Servidor",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "Servidor.Servidor",
+            "args": "",
+            "projectName": "zJogo-Socket"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Cliente",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "stopOnEntry": false,
+            "mainClass": "Cliente.Cliente",
+            "args": "",
+            "projectName": "zJogo-Socket"
+        }
+    ]
+}
