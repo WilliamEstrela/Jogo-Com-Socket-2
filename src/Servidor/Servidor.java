@@ -30,7 +30,7 @@ public class Servidor extends Thread {
 	private static int resultato = 0;
 	private static int pontosPlayer1 = 0;
 	private static int pontosPlayer2 = 0;
-
+//
 	public Servidor(Socket con) {
 		this.conecao = con;
 		try {
