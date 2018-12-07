@@ -63,11 +63,7 @@ public class Servidor extends Thread {
 		
 		resultato = x + y;
 		
-<<<<<<< HEAD
-		String questao = "Responda a soma dos numeros  " + x + " + " + y + " ? usando um @ antes da mensagem";
-=======
 		String questao = "Responda a soma dos numeros  " + x + " + " + y + " ? \n Use o caracter ' @ ' para indentificar o inicio de uma resposta!";
->>>>>>> 397b3798545055229dbe712ddfd6cbd71ab0f4d2
 
 		return questao;
 	}
@@ -83,13 +79,7 @@ public class Servidor extends Thread {
 	}
 
 	/**
-<<<<<<< HEAD
 	 * Metodo validador de resposta
-=======
-	 * Metodo para validar se a resposta enviada pelo cliente esta correta
-	 * 
-	 * 
->>>>>>> 397b3798545055229dbe712ddfd6cbd71ab0f4d2
 	 */
 	public Boolean RespostaCorreta(String s) {
 		Integer respostaDigitada = pegaInteiro(s);
