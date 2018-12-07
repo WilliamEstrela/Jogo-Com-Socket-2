@@ -1,4 +1,4 @@
-package Cliente;
+﻿package Cliente;
 
 
 import java.awt.Color;
@@ -21,7 +21,6 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.CardLayout;
 import java.awt.GridBagLayout;
 import java.awt.FlowLayout;
-//import net.miginfocom.swing.MigLayout;
 import java.awt.GridLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
@@ -105,7 +104,7 @@ public class Cliente extends JFrame implements ActionListener, KeyListener {
 		lbl1 = new JLabel("Adversario");
 		
 		lbl2 = new JLabel("Adversario");
-		lblHistorico = new JLabel("Hist�rico");
+		lblHistorico = new JLabel("Historico");
 		GroupLayout gl_panePlacar = new GroupLayout(painelPlacar);
 		gl_panePlacar.setHorizontalGroup(
 			gl_panePlacar.createParallelGroup(Alignment.LEADING)
@@ -155,7 +154,7 @@ public class Cliente extends JFrame implements ActionListener, KeyListener {
 	 * Método usado para conectar no server socket, retorna IO Exception caso de
 	 * algum erro.
 	 * 
-	 * @throws IOException
+	 * 
 	 */
 	public void conectar() throws IOException {
 
@@ -170,8 +169,8 @@ public class Cliente extends JFrame implements ActionListener, KeyListener {
 
 	/**
 	 * Envia para o servidor a mensagem digitada
-	 * @param msg
-	 * @throws IOException
+	 * 
+	 * 
 	 */	
 	public void enviarMensagem(String msg) throws IOException {
 
@@ -231,10 +230,10 @@ public class Cliente extends JFrame implements ActionListener, KeyListener {
 	}
 	public void setPanel(String s){
 		if(s.equals("1")){
-			lbl1.setText("Voc�");
+			lbl1.setText("Você");
 		}
 		else if(s.equals("2")){
-			lbl2.setText("Voc�");
+			lbl2.setText("Você");
 		}
 			
 	}
@@ -242,7 +241,7 @@ public class Cliente extends JFrame implements ActionListener, KeyListener {
 
 	/**
 	 * Finaliza a conexao e fecha objetos necessários
-	 * @throws IOException
+	 * 
 	 */
 	public void sair() throws IOException {
 
