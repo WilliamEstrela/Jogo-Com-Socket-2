@@ -69,25 +69,31 @@ public class Servidor extends Thread {
 		return questao;
 	}
 
+	public static Integer pegaInteiro(String numero){
+		Integer inteiro = 0;
+		try{
+			inteiro = Integer.parseInt(numero);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return inteiro;
+	}
 
 	/**
 	 * Metodo validador de resposta
-	 * 
-	 * 
 	 */
 	public Boolean RespostaCorreta(String s) {
-		int a;
+		Integer respostaDigitada = pegaInteiro(s);
 
 		if (questaoContador == 0){
 			return false;
 		}
-		try {
-			a = Integer.parseInt(s);
-		} catch (Exception e) {
-			return false;
+				
+		if (respostaDigitada == resultato){
+			return true;
 		}
-		return a == resultato;
-
+		
+		return false;
 	}
 
 	/*
