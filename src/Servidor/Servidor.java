@@ -45,57 +45,49 @@ public class Servidor extends Thread {
 	/**
 	 * Metodo para retornar um inteiro aliatorio
 	 */
-	public static int getNumeroAleatorio(Integer limite) {
+	public static int getNumeroAleatorio(Integer limite){
 		Random g = new Random();
 
 		return g.nextInt(limite);
 	}
 
 	/**
-	 * Retorna uma questão de soma e seta o resultado da questão na variavel global
-	 * 'resultado'
-	 * 
+	 *  Retorna uma questao de soma e seta o resultado da questão na variavel global 'resultado'
 	 */
-
+	
 	public static String getQuestao() {
-		int x, y, limite = 60;
+		int x, y, limite=60;
 
 		x = getNumeroAleatorio(limite);
 		y = getNumeroAleatorio(limite);
-
+		
 		resultato = x + y;
-
-		String questao = "Responda a soma dos numeros  " + x + " + " + y
-				+ " ? \n Use o caracter ' @ ' para indentificar o inicio de uma resposta!";
+		
+		String questao = "Responda a soma dos numeros  " + x + " + " + y + " ? \n Use o caracter ' @ ' para indentificar o inicio de uma resposta!";
 
 		return questao;
 	}
 
 	/**
-	 * Metodo para validar se a resposta enviada pelo cliente esta correta
-	 * 
-	 * 
+	 * Metodo validador de resposta
 	 */
 	public Boolean RespostaCorreta(String s) {
-		int a;
 
-		if (questaoContador == 0) {
-			return false;
+		Integer respostaDigitada = Integer.parseInt(s);
+				
+		if (respostaDigitada == resultato){
+			return true;
 		}
-		try {
-			a = Integer.parseInt(s);
-		} catch (Exception e) {
-			return false;
-		}
-		return a == resultato;
-
+		
+		return false;
 	}
 
-	/**
+	/*
 	 * Método responsavel por iniciar a classe servidor com socket
 	 * 
 	 */
 	public void run() {
+		
 
 		try {
 
@@ -119,11 +111,11 @@ public class Servidor extends Thread {
 					if (RespostaCorreta(mensagem.substring(1, mensagem.length()))) {
 						System.out.println("Resposta correta!");
 						sendPontos(bufwr);
-
+						
 						if (pontosPlayer1 == 5 || pontosPlayer2 == 5) {
 							sendToAll(nome + " Parab�ns a Vitoria e Sua!");
 						} else
-
+							
 							sendQuestao(getQuestao());
 					}
 
@@ -140,10 +132,7 @@ public class Servidor extends Thread {
 		}
 	}
 
-	/**
-	 *  Metado para enviar mensagens a todos os clientes conectados ao servidor
-	 * 
-	 */
+	// Metado para enviar mensagens a todos
 
 	public void sendToAll(BufferedWriter bwSaida, String mensagem) throws IOException {
 		BufferedWriter bwS, bwP = null;
@@ -230,7 +219,6 @@ public class Servidor extends Thread {
 
 	/**
 	 * Metodo responsavel por criar a conexao de socket
-	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
