@@ -65,7 +65,7 @@ public class Servidor extends Thread {
 
 		resultato = x + y;
 
-		String questao = "Responda a soma dos numeros  " + x + " + " + y
+		String questao = "Responda a soma dos números  " + x + " + " + y
 				+ " ? \n Use o caracter ' @ ' para indentificar o inicio de uma resposta!";
 
 		return questao;
@@ -121,7 +121,7 @@ public class Servidor extends Thread {
 						sendPontos(bufwr);
 
 						if (pontosPlayer1 == 5 || pontosPlayer2 == 5) {
-							sendToAll(nome + " Parab�ns a Vitoria e Sua!");
+							sendToAll(nome + " Parabens a Vitoria e Sua!");
 						} else
 
 							sendQuestao(getQuestao());
@@ -179,7 +179,7 @@ public class Servidor extends Thread {
 
 	}
 
-	// Fun��o para adribuir a pontua�
+	// Metado para atribuir pontuação aos jogadores
 
 	public void sendPontos(BufferedWriter bwSaida) throws IOException {
 		BufferedWriter bwS, bwP = null;
@@ -245,7 +245,7 @@ public class Servidor extends Thread {
 			JOptionPane.showMessageDialog(null, " Servidor conectado na porta: " + txtPorta.getText());
 
 			while (playerContador < 2) {
-				System.out.println("Aguardando conex�es....");
+				System.out.println("Aguardando conexões....");
 				System.out.println(" Necessario 2 ou mas players para jogar!..");
 				Socket con = server.accept();
 				playerContador++;
