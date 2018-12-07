@@ -140,7 +140,7 @@ public class Servidor extends Thread {
 		}
 	}
 
-	public void validaPontos(String nome){
+	public void validaPontos(String nome) throws IOException{
 		
 		if (pontosPlayer1 == 5 || pontosPlayer2 == 5) {
 			sendToAll(nome + " Parabens a Vitoria e Sua!");

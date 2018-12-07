@@ -241,7 +241,7 @@ public class Cliente extends JFrame implements ActionListener, KeyListener {
 
 	/**
 	 * Finaliza a conexao e fecha objetos necessários
-	 * 
+	 * @throws IOException
 	 */
 	public void sair() throws IOException {
 
