@@ -117,7 +117,8 @@ public class Servidor extends Thread {
 				mensagem = bfr.readLine();
 
 				if (mensagem.length() > 1 && "@".equalsIgnoreCase(mensagem.substring(0, 1))) {
-					sendToAll(bufwr, mensagem);
+
+					//sendToAll(bufwr, mensagem);
 
 					String respostaDigitada  = mensagem.substring(1, mensagem.length());
 					if (respostaCorreta(respostaDigitada)) {
