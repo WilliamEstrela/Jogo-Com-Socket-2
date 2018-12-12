@@ -247,28 +247,38 @@ public class Servidor extends Thread {
 	 */
 	public static void main(String[] args) {
 
+		JLabel lblMessage = new JLabel("Porta do Servidor:");
+		JTextField txtPorta = new JTextField("5566");
+		Object[] texts = { lblMessage, txtPorta };
+		JOptionPane.showMessageDialog(null, texts);
+
 		try {
-			JLabel lblMessage = new JLabel("Porta do Servidor:");
-			JTextField txtPorta = new JTextField("5566");
-			Object[] texts = { lblMessage, txtPorta };
-			JOptionPane.showMessageDialog(null, texts);
-			server = new ServerSocket(Integer.parseInt(txtPorta.getText()));
+			Integer porta = Integer.parseInt(txtPorta.getText());
+
+			server = new ServerSocket(porta);
+
 			clientes = new ArrayList<BufferedWriter>();
-			JOptionPane.showMessageDialog(null, " Servidor conectado na porta: " + txtPorta.getText());
+
+			JOptionPane.showMessageDialog(null, " Servidor aberto na porta: " + porta);
 
 			while (playerContador < 2) {
-				System.out.println("Aguardando conexões....");
-				System.out.println(" Necessario 2 ou mas players para jogar!..");
+				System.out.println("Aguardando conexões.... necessario 2 players para jogar");
+
+				//Recebe uma conexãoe coloca dentro de uma Thread assim iniciando-a
 				Socket con = server.accept();
-				playerContador++;
-				System.out.println("Novo cliente conectado");
 				Thread t = new Servidor(con);
 				t.start();
+
+				playerContador++;
+				System.out.println("Novo cliente conectado");
+
 			}
 
 		} catch (Exception e) {
 
 			e.printStackTrace();
 		}
-	}// fecha main
-} // fecha Classe
+
+		
+	}
+}
