@@ -54,9 +54,7 @@ public class Servidor extends Thread {
 	/**
 	 * Retorna uma questão de soma e seta o resultado da questão na variavel global
 	 * 'resultado'
-	 * 
 	 */
-
 	public static String getQuestao() {
 		int x, y, limite = 60;
 
@@ -73,8 +71,6 @@ public class Servidor extends Thread {
 
 	/**
 	 * Metodo para validar se a resposta enviada pelo cliente esta correta
-	 * 
-	 * 
 	 */
 	public Boolean respostaCorreta(String s) {
 		int a;
@@ -117,14 +113,10 @@ public class Servidor extends Thread {
 				mensagem = bfr.readLine();
 
 				if (mensagem.length() > 1 && "@".equalsIgnoreCase(mensagem.substring(0, 1))) {
-
-					//sendToAll(bufwr, mensagem);
-
 					String respostaDigitada  = mensagem.substring(1, mensagem.length());
 					if (respostaCorreta(respostaDigitada)) {
 						System.out.println("Resposta correta!");
 						sendPontos(bufwr);
-
 						validaPontos(nome);
 					}
 
@@ -141,6 +133,9 @@ public class Servidor extends Thread {
 		}
 	}
 
+	/**
+	 * Verifica qual jogador ganhou
+	 */
 	public void validaPontos(String nome) throws IOException{
 		
 		if (pontosPlayer1 == 5 || pontosPlayer2 == 5) {
@@ -176,6 +171,9 @@ public class Servidor extends Thread {
 		}
 	}
 
+	/**
+	 * Envia mensagem para todos os clientes
+	 */
 	public void sendToAll(String mensagem) throws IOException {
 		BufferedWriter bwS, bwP = null;
 
@@ -191,16 +189,18 @@ public class Servidor extends Thread {
 
 	}
 
-	// Metado para atribuir pontuação aos jogadores
-
+	/**
+	 * Atribui pontuacao aos jogadores
+	 */
 	public void sendPontos(BufferedWriter bwSaida) throws IOException {
 		BufferedWriter bwS, bwP = null;
 		int i = 0;
 		for (BufferedWriter bw : clientes) {
 			bwS = bw;
 			i++;
-			if (bwSaida == bwS)
-				break;
+			if (bwSaida == bwS){
+				break;				
+			}
 
 		}
 		for (BufferedWriter bw : clientes) {
@@ -219,6 +219,11 @@ public class Servidor extends Thread {
 		}
 	}
 
+	/**
+	 * Método responsável por receber um 'cliente' e enviar quantos tem ao servidor
+	 * @param bwSaida
+	 * @throws IOException
+	 */
 	public void sendPanelNunber(BufferedWriter bwSaida) throws IOException {
 
 		bwSaida.write("#" + playerContador + "\r\n");

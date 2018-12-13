@@ -153,8 +153,6 @@ public class Cliente extends JFrame implements ActionListener, KeyListener {
 	/***
 	 * Método usado para conectar no server socket, retorna IO Exception caso de
 	 * algum erro.
-	 * 
-	 * 
 	 */
 	public void conectar() throws IOException {
 
@@ -166,13 +164,6 @@ public class Cliente extends JFrame implements ActionListener, KeyListener {
 		bfw.flush();
 	}
 
-	/**
-	 * Limpa a area de chat
-	 */
-	public void limparTela(){
-		texto.selectAll();
-		texto.replaceSelection("");
-	}
 
 	/**
 	 * Envia para o servidor a mensagem digitada
@@ -182,14 +173,10 @@ public class Cliente extends JFrame implements ActionListener, KeyListener {
 	public void enviarMensagem(String msg) throws IOException {
 
 		if (msg.equals("Sair")) {
-			limparTela();
 			bfw.write("Desconectado \r\n");
 			texto.append("Desconectado \r\n");
 		} else {
 			bfw.write(msg + "\r\n");
-
-			limparTela();
-
 			texto.append(textoNome.getText() + " diz -> " + textoMensagem.getText() + "\r\n");
 		}
 		bfw.flush();
@@ -207,25 +194,34 @@ public class Cliente extends JFrame implements ActionListener, KeyListener {
 		BufferedReader bfr = new BufferedReader(inr);
 		String msg = "";
 
-		while (!"Sair".equalsIgnoreCase(msg))
-
+		while (!"Sair".equalsIgnoreCase(msg)){
 			if (bfr.ready()) {
 				msg = bfr.readLine();
-				if (msg.equals("Sair"))
+				
+				if (msg.equals("Sair")){
 					texto.append("Servidor caiu! \r\n");
-				else
+				}else{
 					if (msg.length()>1 &&  "#".equalsIgnoreCase(msg.substring(0, 1))){
-						setPanel(msg.substring(1, msg.length()));
+						int tamanho = msg.length();
+						String mensagem = msg.substring(1, tamanho);
+						setPanel(mensagem);
 					}
-					else if (msg.length()>1 &&  "*".equalsIgnoreCase(msg.substring(0, 1))){
-						setPonts(msg.substring(1, msg.length()));
-					}else
-					   texto.append(msg + "\r\n");
+					else{
+						if (msg.length()>1 &&  "*".equalsIgnoreCase(msg.substring(0, 1))){
+							int tamanho = msg.length();
+							String mensagem = msg.substring(1, tamanho);
+							setPonts(mensagem);
+						}else{
+							texto.append(msg + "\r\n");
+						}
+					}
+				}
 			}
+		}
 	}
 
 	/**
-	 * 
+	 * Método responsável por preencher a progressBar
 	 * @param s
 	 */
 	public void setPonts(String s){
