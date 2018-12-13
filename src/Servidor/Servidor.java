@@ -100,6 +100,7 @@ public class Servidor extends Thread {
 		try {
 
 			String mensagem;
+
 			OutputStream ou = this.conecao.getOutputStream();
 			Writer ouw = new OutputStreamWriter(ou);
 			BufferedWriter bufwr = new BufferedWriter(ouw);
@@ -121,10 +122,12 @@ public class Servidor extends Thread {
 					//sendToAll(bufwr, mensagem);
 
 					String respostaDigitada  = mensagem.substring(1, mensagem.length());
+
 					if (respostaCorreta(respostaDigitada)) {
 						System.out.println("Resposta correta!");
 						sendPontos(bufwr);
-
+						bufwr.write("limpar");
+						bufwr.flush();
 						validaPontos(nome);
 					}
 
@@ -226,9 +229,13 @@ public class Servidor extends Thread {
 
 	}
 
+	/**
+	 * Método responsável por enviar a 'questao' para todos os jogadores conectados
+	 */
 	public static void sendQuestao(String msg) throws IOException {
 		BufferedWriter bwS, bwP = null;
 		questaoContador++;
+
 		for (BufferedWriter bw : clientes) {
 			try {
 				bw.write("SERVER->  " + questaoContador + " - " + msg + "\r\n");

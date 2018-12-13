@@ -182,13 +182,11 @@ public class Cliente extends JFrame implements ActionListener, KeyListener {
 	public void enviarMensagem(String msg) throws IOException {
 
 		if (msg.equals("Sair")) {
-			limparTela();
 			bfw.write("Desconectado \r\n");
 			texto.append("Desconectado \r\n");
 		} else {
 			bfw.write(msg + "\r\n");
 
-			limparTela();
 
 			texto.append(textoNome.getText() + " diz -> " + textoMensagem.getText() + "\r\n");
 		}
@@ -213,6 +211,8 @@ public class Cliente extends JFrame implements ActionListener, KeyListener {
 				msg = bfr.readLine();
 				if (msg.equals("Sair"))
 					texto.append("Servidor caiu! \r\n");
+				if(msg.contains("limpar"))
+					limparTela();
 				else
 					if (msg.length()>1 &&  "#".equalsIgnoreCase(msg.substring(0, 1))){
 						setPanel(msg.substring(1, msg.length()));
